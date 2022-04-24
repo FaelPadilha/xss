@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.js" integrity="sha512-BYhMBRso7y/c4NHtWwQ8EsM1FWIde8d/ABTA8mWACV4j+JlkO8HWn0rWATeEQ/TSDHfhRA/3F1agc6N1HC60hQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+<form th:action="@{/protection}" method="get">
+    <input type="text" size="100" name="language"/>
+    <input type="submit" value="Enviar"/>
+</form>
+
+<p id="language" th:utext="'Language: '"> </p>
+
+<script>
+    console.log('A entrada na página começou');
+
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const paramLanguage = urlSearchParams.get('language');
+    const language = DOMPurify.sanitize(paramLanguage);
+
+    console.log("O parâmetro recebido no valor de 'Language' é igual a: " + paramLanguage);
+    console.log("O parâmetro recebido no valor de 'Language' após passar pela sanitização é igual a: " + language);
+
+    document.getElementById("language").textContent = language;
+
+    console.log("Filtro finalizado");
+</script>
+</body>
+</html>

@@ -8,8 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class XssController {
 
     @GetMapping(value = "/")
-    public String test(@RequestParam(value = "language", required = false) String language, Model model) {
+    public String testInvasao(@RequestParam(value = "language", required = false) String language, Model model) {
         model.addAttribute("language", language);
         return "index";
+    }
+
+    @GetMapping(value = "/protection")
+    public String testProtecao(@RequestParam(value = "language", required = false) String language, Model model) {
+        model.addAttribute("language", language);
+        return "protect";
     }
 }
